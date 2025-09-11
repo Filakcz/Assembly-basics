@@ -17,29 +17,28 @@ _start:
     mov rbx, [num2]    ; b
 
 gcd_loop:
-    cmp rbx, 0
+    cmp rbx, 0         ; pokud b == 0 tak gcd_done
     je gcd_done
-    xor rdx, rdx       ; vynulujeme high cast pred div
-    div rbx            ; rax / rbx -> podil v rax, zbytek v rdx
+    xor rdx, rdx       ; vynulujeme rdx,
+    div rbx            ; rax / rbx > podil v rax, zbytek v rdx
     mov rax, rbx       ; a = b
     mov rbx, rdx       ; b = zbytek
     jmp gcd_loop
 
 gcd_done:
     ; vysledek je v rax
-
-; --- prevod cisla v rax na string ---
+    ; odtud stejny jak v add.asm
     mov rcx, 10
-    mov rsi, result
-    add rsi, 19
-    mov byte [rsi], 0      ; ukoncovaci null
+    mov rbx, result
+    add rbx, 19
+    mov byte [rbx], 0
 
 convert_loop:
     xor rdx, rdx
-    div rcx                ; rax / 10
+    div rcx
     add dl, '0'
-    dec rsi
-    mov [rsi], dl
+    dec rbx
+    mov [rbx], dl
     test rax, rax
     jnz convert_loop
 
@@ -51,8 +50,9 @@ convert_loop:
 
     mov rax, 1
     mov rdi, 1
+    mov rsi, rbx
     mov rdx, result+20
-    sub rdx, rsi       ; delka stringu
+    sub rdx, rbx
     syscall
 
     mov rax, 1
