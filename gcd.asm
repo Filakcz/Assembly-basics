@@ -19,7 +19,7 @@ _start:
 gcd_loop:
     cmp rbx, 0         ; pokud b == 0 tak gcd_done
     je gcd_done
-    xor rdx, rdx       ; vynulujeme rdx,
+    xor rdx, rdx       ; vynulujeme rdx
     div rbx            ; rax / rbx > podil v rax, zbytek v rdx
     mov rax, rbx       ; a = b
     mov rbx, rdx       ; b = zbytek
