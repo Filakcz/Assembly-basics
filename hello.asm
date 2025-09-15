@@ -18,5 +18,5 @@ _start: ; start
     ; exit(0)
     mov rax, 60       ; syscall cislo 60 = exit
     xor rdi, rdi       ; kod k exitu
-    ; tohle je o 5 bajtu lepsi nez mov rdi, 0
+    ; tohle je o 5 bajtu lepsi nez mov rdi, 0 a rychlejsi (prej)
     syscall
