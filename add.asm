@@ -43,7 +43,6 @@ convert_loop:
     mov rdi, 1                 ; stdout
     mov rsi, rbx               ; adresa retezce
     mov rdx, result+20         ; konec bufferu
-    sub rdx, rbx               ; rdx = (result+20) - rbx
     syscall
 
     ; \n
